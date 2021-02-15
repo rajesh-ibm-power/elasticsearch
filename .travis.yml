@@ -2,21 +2,15 @@ language: java
 arch:
   - amd64
   - ppc64le
+  
 jdk:
   - openjdk11
+  - openjdk15
 
-dist: xenail
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
 
-# No need for preliminary install step.
-install: true
-#
-# Run all integration tests.
-script: 
-  - "mvn --show-version --errors --batch-mode clean verify"
-#
 cache:
-    directories:
-    - $HOME/.m2
-branches:
-    except:
-        - gh-pages
+  directories:
+    - $HOME/.gradle/caches/modules-2/
+    - $HOME/.gradle/wrapper/
